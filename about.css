@@ -1,0 +1,9 @@
+.about{
+    color: rgb(15, 143, 100);
+}
+.back-button{
+    background-color: blueviolet;
+    color: whitesmoke;
+    padding: 10px;
+    width: 75px;
+}

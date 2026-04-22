@@ -1,0 +1,12 @@
+.service{
+    color: rgb(151, 16, 117);
+    
+}
+
+.back-button{
+    background-color: blue;
+    color: aliceblue;
+    padding: 10px;
+    width: 75px;
+    margin: auto;
+}
