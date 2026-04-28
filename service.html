@@ -286,6 +286,78 @@ while($row = mysqli_fetch_assoc($result)){
     </div>
 
 </div>
+
+<div class="box">
+    <h3>PDO CRUD (Connection, Create, Read, Update, Delete)</h3>
+<pre>
+&lt;?php
+// 🔹 1. CONNECTION
+try {
+    $pdo = new PDO("mysql:host=localhost;dbname=test","root","");
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch(PDOException $e){
+    echo "Connection Failed: " . $e->getMessage();
+}
+
+// 🔹 2. CREATE (INSERT)
+if(isset($_POST['add'])){
+    $name = $_POST['name'];
+
+    $stmt = $pdo->prepare(
+    "INSERT INTO users(name) VALUES(:name)");
+
+    $stmt->execute(['name' => $name]);
+
+    echo "✅ Data Inserted&lt;br&gt;";
+}
+
+// 🔹 3. READ (SELECT)
+$stmt = $pdo->query("SELECT * FROM users");
+
+while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+    echo $row['id']." - ".$row['name'].
+    " &lt;a href='?edit=".$row['id']."'&gt;Edit&lt;/a&gt; 
+      &lt;a href='?delete=".$row['id']."'&gt;Delete&lt;/a&gt;&lt;br&gt;";
+}
+
+// 🔹 4. UPDATE
+if(isset($_POST['update'])){
+    $id = $_POST['id'];
+    $name = $_POST['name'];
+
+    $stmt = $pdo->prepare(
+    "UPDATE users SET name=:name WHERE id=:id");
+
+    $stmt->execute([
+        'name' => $name,
+        'id' => $id
+    ]);
+
+    echo "✏️ Updated&lt;br&gt;";
+}
+
+// 🔹 5. DELETE
+if(isset($_GET['delete'])){
+    $id = $_GET['delete'];
+
+    $stmt = $pdo->prepare(
+    "DELETE FROM users WHERE id=:id");
+
+    $stmt->execute(['id' => $id]);
+
+    echo "🗑️ Deleted&lt;br&gt;";
+}
+?&gt;
+
+&lt;form method="POST"&gt;
+    &lt;input type="hidden" name="id"&gt;
+    &lt;input type="text" name="name" placeholder="Enter Name"&gt;
+
+    &lt;button name="add"&gt;Add&lt;/button&gt;
+    &lt;button name="update"&gt;Update&lt;/button&gt;
+&lt;/form&gt;
+</pre>
+</div>
 <div class="center">
         <button class="back-button" onclick="history.back()">Back</button>
     </div>
