@@ -238,6 +238,281 @@ echo $emp2->calculateSalary();
 ✔ Abstraction → abstract class Employee  
 </p>
     </div>
+ <!-- INTERFACE -->
+    <div class="box">
+        <h3>Interface (Contract / Rules)</h3>
+
+<pre>
+&lt;?php
+interface PaymentMethod {
+    public function pay($amount);
+}
+
+// Implementing Interface
+class CreditCard implements PaymentMethod {
+    public function pay($amount){
+        echo "Paid $amount using Credit Card&lt;br&gt;";
+    }
+}
+
+class PayPal implements PaymentMethod {
+    public function pay($amount){
+        echo "Paid $amount using PayPal&lt;br&gt;";
+    }
+}
+
+class Cash implements PaymentMethod {
+    public function pay($amount){
+        echo "Paid $amount using Cash&lt;br&gt;";
+    }
+}
+
+// Using polymorphism
+$methods = [
+    new CreditCard(),
+    new PayPal(),
+    new Cash()
+];
+
+foreach($methods as $m){
+    $m->pay(1000);
+}
+?&gt;
+</pre>
+
+<p>
+✔ Interface defines method rules (no body)  
+✔ Classes must implement all methods  
+✔ Supports polymorphism  
+</p>
+    </div>
+
+    <!-- MULTIPLE INTERFACE -->
+    <div class="box">
+        <h3>Multiple Interface</h3>
+<pre>
+&lt;?php
+interface A {
+    public function test1();
+}
+
+interface B {
+    public function test2();
+}
+
+class Demo implements A, B {
+    public function test1(){
+        echo "Function 1&lt;br&gt;";
+    }
+
+    public function test2(){
+        echo "Function 2";
+    }
+}
+
+$obj = new Demo();
+$obj->test1();
+$obj->test2();
+?&gt;
+</pre>
+<p>
+PHP allows multiple interfaces (unlike multiple inheritance).
+</p>
+    </div>
+
+
+    <!-- INTERFACE VS ABSTRACT -->
+    <div class="box">
+        <h3>Interface vs Abstract</h3>
+<pre>
+Interface:
+- Only method declaration
+- No body
+- Multiple allowed
+
+Abstract:
+- Can have body
+- Single inheritance
+</pre>
+<p>
+Interface = 100% abstraction.
+</p>
+    </div>
+
+   <!-- BIG INTERFACE EXAM -->
+    <div class="box">
+        <h3>🔥 Exam Example (Interface System)</h3>
+
+<pre>
+Q: Create a system for Online Orders.
+Use Interface for payment system.
+
+&lt;?php
+interface Order {
+    public function placeOrder($product);
+}
+
+class OnlineOrder implements Order {
+    public function placeOrder($product){
+        echo "Order placed for $product&lt;br&gt;";
+    }
+}
+
+interface Payment {
+    public function pay($amount);
+}
+
+class Bkash implements Payment {
+    public function pay($amount){
+        echo "Paid $amount via Bkash&lt;br&gt;";
+    }
+}
+
+class Nagad implements Payment {
+    public function pay($amount){
+        echo "Paid $amount via Nagad&lt;br&gt;";
+    }
+}
+
+// Use system
+$order = new OnlineOrder();
+$order->placeOrder("Laptop");
+
+$pay = new Bkash();
+$pay->pay(50000);
+?&gt;
+</pre>
+
+<p>
+✔ Interface enforces structure  
+✔ Real-life payment system example  
+✔ Very common exam question  
+</p>
+    </div>
+
+      <!-- TRAIT LOGGER -->
+    <div class="box">
+        <h3>Trait (Code Reuse) - Logger</h3>
+
+<pre>
+&lt;?php
+trait Logger {
+
+    public function log($message){
+        echo "[LOG]: " . $message . "&lt;br&gt;";
+    }
+
+}
+
+// Using trait in classes
+class User {
+    use Logger;
+
+    public function createUser(){
+        $this->log("User created");
+    }
+}
+
+class Product {
+    use Logger;
+
+    public function addProduct(){
+        $this->log("Product added");
+    }
+}
+
+$u = new User();
+$u->createUser();
+
+$p = new Product();
+$p->addProduct();
+?&gt;
+</pre>
+
+<p>
+✔ Trait allows code reuse across multiple classes  
+✔ Works like copy-paste but cleaner  
+✔ Avoids duplication  
+</p>
+    </div>
+
+   
+<div class="box">
+    <h3>PHP OOP with Interface & Trait</h3>
+
+<pre>
+&lt;?php
+/* =========================
+   INTERFACE
+========================= */
+interface Payment {
+    public function pay($amount);
+}
+
+/* Classes implementing interface */
+class Bkash implements Payment {
+    public function pay($amount){
+        echo "Paid $amount using Bkash&lt;br&gt;";
+    }
+}
+
+class Nagad implements Payment {
+    public function pay($amount){
+        echo "Paid $amount using Nagad&lt;br&gt;";
+    }
+}
+
+/* =========================
+   TRAIT (Logger)
+========================= */
+trait Logger {
+    public function log($msg){
+        echo "[LOG]: " . $msg . "&lt;br&gt;";
+    }
+}
+
+/* =========================
+   CLASS USING BOTH
+========================= */
+class Order {
+    use Logger; // trait used
+
+    private $product;
+    private $price;
+
+    function __construct($product,$price){
+        $this->product = $product;
+        $this->price = $price;
+    }
+
+    public function placeOrder(Payment $method){
+        $this->log("Order placed for " . $this->product);
+        $method->pay($this->price);
+    }
+}
+
+/* =========================
+   EXECUTION
+========================= */
+$order = new Order("Laptop",50000);
+
+$payment1 = new Bkash();
+$order->placeOrder($payment1);
+
+$payment2 = new Nagad();
+$order->placeOrder($payment2);
+
+?&gt;
+</pre>
+
+<p>
+✔ Interface → defines payment rules (pay method)  
+✔ Trait → reusable logger function  
+✔ Order class uses both Interface & Trait  
+✔ Demonstrates polymorphism + code reuse  
+</p>
+
+</div>
 
 </div>
 

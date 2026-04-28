@@ -396,6 +396,115 @@
         <td>example: form, validation, alert, and DOM update.</td>
     </tr>
 
+    <tr>
+    <td>Click Event (addEventListener)</td>
+    <td>
+<pre>
+&lt;button id="btn"&gt;Click Me&lt;/button&gt;
+
+&lt;script&gt;
+document.getElementById("btn").addEventListener("click", function() {
+    alert("Button Clicked!");
+});
+&lt;/script&gt;
+</pre>
+    </td>
+    <td>
+Button click triggers alert using addEventListener.
+    </td>
+</tr>
+
+<tr>
+    <td>Mouse Over Event</td>
+    <td>
+<pre>
+&lt;div id="box"&gt;Hover me&lt;/div&gt;
+
+&lt;script&gt;
+document.getElementById("box").addEventListener("mouseover", function() {
+    console.log("Mouse is over the element");
+});
+&lt;/script&gt;
+</pre>
+    </td>
+    <td>
+Detects mouse entering the element.
+    </td>
+</tr>
+
+<tr>
+    <td>Keyboard Event</td>
+    <td>
+<pre>
+&lt;script&gt;
+document.addEventListener("keydown", function(event) {
+    console.log("Key pressed: " + event.key);
+});
+&lt;/script&gt;
+</pre>
+    </td>
+    <td>
+Tracks keyboard key presses.
+    </td>
+</tr>
+
+<tr>
+    <td>Input Change Event</td>
+    <td>
+<pre>
+&lt;input id="input" type="text"&gt;
+
+&lt;script&gt;
+document.getElementById("input").addEventListener("change", function() {
+    alert("Value changed!");
+});
+&lt;/script&gt;
+</pre>
+    </td>
+    <td>
+Runs when input value changes.
+    </td>
+</tr>
+
+<tr>
+    <td>Form Submit Event</td>
+    <td>
+<pre>
+&lt;form id="form"&gt;
+    &lt;button type="submit"&gt;Submit&lt;/button&gt;
+&lt;/form&gt;
+
+&lt;script&gt;
+document.getElementById("form").addEventListener("submit", function(e) {
+    e.preventDefault();
+    alert("Form Submitted!");
+});
+&lt;/script&gt;
+</pre>
+    </td>
+    <td>
+Prevents reload and handles form submit.
+    </td>
+</tr>
+
+<tr>
+    <td>Image Click (Change Image)</td>
+    <td>
+<pre>
+&lt;img id="myImage" src="image1.jpg" width="100"&gt;
+
+&lt;script&gt;
+document.getElementById("myImage").addEventListener("click", function() {
+    this.src = "image2.jpg";
+});
+&lt;/script&gt;
+</pre>
+    </td>
+    <td>
+Changes image when clicked.
+    </td>
+</tr>
+
     </table>
     <div class="center">
         <button class="back-button" onclick="history.back()">Back</button>
