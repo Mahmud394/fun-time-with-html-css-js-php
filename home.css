@@ -86,7 +86,27 @@ pre {
     background: #020101;
     color: #f4f4f4;
 }
+/* Top button */
+#topBtn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
 
+    background: #dd1212;
+    color: white;
+    border: none;
+    padding: 12px 15px;
+    font-size: 16px;
+    border-radius: 50%;
+    cursor: pointer;
+
+    display: none; /* hidden by default */
+    z-index: 1000;
+}
+
+#topBtn:hover {
+    background: #b50f0f;
+}
 /* =======================
    DARK MODE
 ======================= */
