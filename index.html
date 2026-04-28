@@ -24,7 +24,17 @@
 
 <!-- Hero Section -->
 <section class="hero">
+
     <h1 class="well">Welcome to My Website</h1>
+
+    <!-- DESCRIPTION -->
+    <p class="description">
+        This is a beginner-friendly educational web project built using HTML, CSS, and JavaScript.
+        It demonstrates core web development concepts such as DOM manipulation, event handling,
+        form validation, and dynamic calculations. The website also includes multiple learning pages
+        covering HTML, CSS, JavaScript, PHP, MySQL, OOP, and MVC structure to help improve programming skills.
+    </p>
+
     <p id="para">This is a simple Product Price calculator</p>
 
     <!-- Get Product -->
@@ -59,27 +69,26 @@
 
 <!-- Footer -->
 <footer class="footer">
-    <p>© 2026 MySite | All Rights Reserved</p>
+    <p>© 2026 Mahmud | All Rights Reserved</p>
 </footer>
 
 <!-- JavaScript -->
 <script>
+
 // Calculate total cost
 function calculateCost() {
     let qty = document.getElementById("qty").value;
     let price = document.getElementById("Price").value;
 
-    // check input field
-    if (qty === "" ) {
+    // validation
+    if (qty === "") {
         document.getElementById("cost").innerHTML = "Enter quantity!";
         return;
     }
-    if ( price === "") {
+    if (price === "") {
         document.getElementById("cost").innerHTML = "Enter price!";
         return;
     }
-
-    
 
     let total = qty * price;
 
@@ -105,11 +114,11 @@ function showRandomProduct() {
         "Product Name: " + selectedProduct;
 }
 
-// Submit order message 
+// Submit order
 function showMessage() {
     let qty = document.getElementById("qty").value;
     let price = document.getElementById("Price").value;
-// check input field
+
     if (qty === "" || price === "") {
         document.getElementById("message").innerHTML =
             "Please fill all fields!";
@@ -121,13 +130,14 @@ function showMessage() {
     document.getElementById("message").innerHTML =
         "Order submitted successfully! Total = $" + total;
 
-    // Optional: clear form
+    // reset form
     document.getElementById("qty").value = "";
     document.getElementById("Price").value = "";
     document.getElementById("cost").innerHTML = "Final Cost: $0";
 
-    return false; 
+    return false;
 }
+
 </script>
 
 </body>
