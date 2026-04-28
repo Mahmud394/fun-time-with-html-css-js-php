@@ -1,12 +1,153 @@
-.service{
-    color: rgb(151, 16, 117);
-    
+.home {
+    color: brown;
+    text-align: center;
+}
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #dd1212;
+    padding: 10px 20px;
 }
 
-.back-button{
-    background-color: blue;
-    color: aliceblue;
-    padding: 10px;
-    width: 75px;
-    margin: auto;
+.logo {
+    color: white;
 }
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+}
+
+.nav-links a:hover {
+    color: #00bcd4;
+}
+
+.back-button {
+    background-color: blueviolet;
+    color: whitesmoke;
+    padding: 10px;
+    width: 80px;
+    border: none;
+    cursor: pointer;
+
+    display: block;
+    margin: 20px auto;
+
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.back-button:hover {
+    background: #e42908;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid black;
+    padding: 10px;
+    vertical-align: top;
+}
+
+th {
+    background: #222;
+    color: white;
+}
+
+pre {
+    background: #f4f4f4;
+    padding: 8px;
+    overflow-x: auto;
+}
+
+.dark-btn:hover{
+    background: #020101;
+    color: #f4f4f4;
+}
+
+.php-section {
+    margin-top: 30px;
+}
+
+.box {
+    background: #111;
+    color: #fff;
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 10px;
+}
+
+.box h3 {
+    color: #00ffcc;
+    margin-bottom: 10px;
+}
+
+.box pre {
+    background: #1e1e1e;
+    padding: 10px;
+    overflow-x: auto;
+}
+
+/* =======================
+   DARK MODE
+======================= */
+.dark-mode {
+    background: #121212;
+    color: white;
+}
+
+/* Home title */
+.dark-mode .home {
+    color: #ffd369;
+}
+
+/* Table */
+.dark-mode table {
+    color: white;
+}
+
+.dark-mode th {
+    background: #333;
+}
+
+.dark-mode td {
+    background: #1e1e1e;
+    border-color: #444;
+}
+
+/* Code block */
+.dark-mode pre {
+    background: #2a2a2a;
+    color: #00ffcc;
+}
+
+/* Back button */
+.dark-mode .back-button {
+    background-color: #444;
+    color: white;
+}
+
+.dark-mode .back-button:hover {
+    background: #e42908;
+}
+

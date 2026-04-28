@@ -7,7 +7,259 @@
     <link rel="stylesheet" href="contact.css">
 </head>
 <body>
-    <h1 class="contact"> phone</h1>
-    <button class="back-button"> Back</button>
+    <!-- Navbar -->
+<nav class="navbar">
+    <h2 class="logo">MySite</h2>
+    <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="html.html">HTML</a></li>
+        <li><a href="css.html">CSS</a></li>
+        <li><a href="home.html">JavaScript&DOM</a></li>
+        <li><a href="about.html">MVC</a></li>
+        <li><a href="service.html">PHP</a></li>
+        <li><a href="contact.html">OOP-PHP</a></li>
+        <li><a href="login.html">Login</a></li>
+    </ul>
+</nav>
+
+    <h1 class="home">OOP-PHP Complete Basics</h1>
+    <div class="center">
+        <button class="dark-btn" onclick="toggleDarkMode()">Dark Mode</button>
+    </div>
+    
+    <div class="center">
+        <button class="back-button" onclick="history.back()">Back</button>
+        
+    </div>
+
+<div class="php-section">
+
+    <!-- ENCAPSULATION -->
+    <div class="box">
+        <h3>1. Encapsulation (Data Hiding)</h3>
+<pre>
+&lt;?php
+class BankAccount {
+    private $balance;
+
+    function __construct($amount){
+        $this->balance = $amount;
+    }
+
+    public function deposit($amount){
+        if($amount > 0){
+            $this->balance += $amount;
+        }
+    }
+
+    public function withdraw($amount){
+        if($amount <= $this->balance){
+            $this->balance -= $amount;
+        } else {
+            echo "❌ Insufficient Balance&lt;br&gt;";
+        }
+    }
+
+    public function getBalance(){
+        return $this->balance;
+    }
+}
+
+$acc = new BankAccount(1000);
+$acc->deposit(500);
+$acc->withdraw(300);
+
+echo "Balance: " . $acc->getBalance();
+?&gt;
+</pre>
+<p>
+Encapsulation hides data using <b>private</b> and allows access through public methods.
+</p>
+    </div>
+
+    <!-- INHERITANCE -->
+    <div class="box">
+        <h3>2. Inheritance (Code Reuse)</h3>
+<pre>
+&lt;?php
+class Person {
+    public $name;
+
+    function __construct($name){
+        $this->name = $name;
+    }
+
+    function showName(){
+        echo "Name: " . $this->name . "&lt;br&gt;";
+    }
+}
+
+class Student extends Person {
+    public $course;
+
+    function __construct($name,$course){
+        parent::__construct($name);
+        $this->course = $course;
+    }
+
+    function showStudent(){
+        echo "Course: " . $this->course;
+    }
+}
+
+$s = new Student("Mahmud","CSE");
+$s->showName();
+$s->showStudent();
+?&gt;
+</pre>
+<p>
+Child class inherits properties & methods from parent class.
+</p>
+    </div>
+
+    <!-- POLYMORPHISM -->
+    <div class="box">
+        <h3>3. Polymorphism (Method Overriding)</h3>
+<pre>
+&lt;?php
+class Animal {
+    function sound(){
+        echo "Animal makes sound&lt;br&gt;";
+    }
+}
+
+class Dog extends Animal {
+    function sound(){
+        echo "Dog barks&lt;br&gt;";
+    }
+}
+
+class Cat extends Animal {
+    function sound(){
+        echo "Cat meows&lt;br&gt;";
+    }
+}
+
+$animals = [new Animal(), new Dog(), new Cat()];
+
+foreach($animals as $a){
+    $a->sound();
+}
+?&gt;
+</pre>
+<p>
+Same method name → different behavior depending on object.
+</p>
+    </div>
+
+    <!-- ABSTRACTION -->
+    <div class="box">
+        <h3>4. Abstraction (Hide Implementation)</h3>
+<pre>
+&lt;?php
+abstract class Shape {
+    abstract function area();
+}
+
+class Rectangle extends Shape {
+    private $w,$h;
+
+    function __construct($w,$h){
+        $this->w = $w;
+        $this->h = $h;
+    }
+
+    function area(){
+        return $this->w * $this->h;
+    }
+}
+
+$r = new Rectangle(5,10);
+echo "Area: " . $r->area();
+?&gt;
+</pre>
+<p>
+Abstract class forces child classes to implement required methods.
+</p>
+    </div>
+
+    <!-- BIG EXAM EXAMPLE -->
+    <div class="box">
+        <h3>🔥 BIG EXAM QUESTION (Covers ALL 4 Pillars)</h3>
+
+<pre>
+Q: Create a system for Employee Salary.
+- Use Encapsulation for salary
+- Use Inheritance (Manager extends Employee)
+- Use Polymorphism (different bonus)
+- Use Abstraction for salary calculation
+
+&lt;?php
+abstract class Employee {
+    protected $name;
+    protected $salary;
+
+    function __construct($name,$salary){
+        $this->name = $name;
+        $this->salary = $salary;
+    }
+
+    abstract function calculateSalary();
+}
+
+// Child class
+class Manager extends Employee {
+
+    function calculateSalary(){
+        return $this->salary + 5000; // bonus
+    }
+}
+
+class Developer extends Employee {
+
+    function calculateSalary(){
+        return $this->salary + 2000;
+    }
+}
+
+// Polymorphism
+$emp1 = new Manager("Mahmud",20000);
+$emp2 = new Developer("Rahim",15000);
+
+echo $emp1->calculateSalary() . "&lt;br&gt;";
+echo $emp2->calculateSalary();
+?&gt;
+</pre>
+
+<p>
+✔ Encapsulation → protected variables  
+✔ Inheritance → Manager, Developer extends Employee  
+✔ Polymorphism → same method, different result  
+✔ Abstraction → abstract class Employee  
+</p>
+    </div>
+
+</div>
+
+    <!-- Dark modE -->
+    <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle("dark-mode");
+
+            // save mode
+            if (document.body.classList.contains("dark-mode")) {
+                localStorage.setItem("theme", "dark");
+            } else {
+                localStorage.setItem("theme", "light");
+            }
+        }
+
+        // load saved theme
+        window.onload = function () {
+            if (localStorage.getItem("theme") === "dark") {
+                document.body.classList.add("dark-mode");
+            }
+        };
+    </script>
 </body>
 </html>
